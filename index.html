@@ -4,21 +4,39 @@
     <meta charset="UTF-8" />
     <title>JS-Library</title>
     <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
       .container {
         display: flex;
+      }
+      #form-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vw;
+        text-align: center;
+        display: none; /*used to control the overlay*/
+        justify-items: center;
+        align-items: center;
+        background: #f9c5c5d1;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <button id="newBook">Add new book to library</button>
-      <form>
-        <label for="bookname">Book name:</label><br>
-        <input type="text" id="bookname" name="bookname"><br>
-        <label for="pages">Last name:</label><br>
-        <input type="text" id="pages" name="pages">
-        <input type="submit" value="Submit">
-      </form>
+    </div>
+    <div id="form-overlay">
+      <div id="addBookForm">
+        <label for="bookname">Book name:</label><br />
+        <input type="text" id="bookname" name="bookname" /><br />
+        <label for="pages">Pages:</label><br />
+        <input type="text" id="pages" name="pages" /><br />
+        <button onclick="addBookButton()">Add it</button>
+      </div>
     </div>
   </body>
   <script src="scripts.js"></script>
