@@ -2,43 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>JS-Library</title>
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
-      .container {
-        display: flex;
-      }
-      #form-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vw;
-        text-align: center;
-        display: none; /*used to control the overlay*/
-        justify-items: center;
-        align-items: center;
-        background: #f9c5c5d1;
-      }
-    </style>
+    <title>Library</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div class="container">
-      <button id="newBook">Add new book to library</button>
+    <div class="header">
+      <div class="appName">Library</div>
+      <button class="addBookButton">Add book</button>
+      <div class="addBookForm">
+        <span>Title:<input type="text" id="bookname" required/></span>
+        <span>Author:<input type="text" id="authorname" required/></span>
+        <span>Total pages:<input type="text" id="totalpages" /></span>
+        <button id='submit'>Add to Library</button>
+      </div>
     </div>
-    <div id="form-overlay">
-      <div id="addBookForm">
-        <label for="bookname">Book name:</label><br />
-        <input type="text" id="bookname" name="bookname" /><br />
-        <label for="pages">Pages:</label><br />
-        <input type="text" id="pages" name="pages" /><br />
-        <button onclick="addBookButton()">Add it</button>
+    <div class="container">
+      <div class="book" key="kasd343">
+        <p class="bookName">Mein Kampf</p>
+        <p class="authorName">Hitler</p>
+        <p class="pageProgress">69/420</p>
+        <button class="editBook">Edit</button>
+        <button class="deleteBook">Delete</button>
+      </div>
+      <div class="book" key="ksdf874">
+        <p class="bookName">Mein Kampf</p>
+        <p class="authorName">Hitler</p>
+        <p class="pageProgress">69/420</p>
+        <button class="editBook">Edit</button>
+        <button class="deleteBook">Delete</button>
       </div>
     </div>
   </body>
-  <script src="scripts.js"></script>
-  <script></script>
+  <script src="./scripts.js"></script>
 </html>

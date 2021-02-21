@@ -1,41 +1,46 @@
-let myLibrary = [];
+let Library = (function () {
+    //cacheDOM
+    //Bind Events
+    //Render
+  let books = [];
+  let addBookButton = document.querySelector('.addBookButton');
+  let container = document.querySelector('.container');
 
-function Book(name, pages) {
-  this.name = name;
-  this.pages = pages;
+  function init () {
+      console.log(`Initializing`);
+      bindEvents();
+  };
+
+  function bindEvents() {
+      addBookButton.addEventListener('click',addBookFormParse);
+  }
+function addBookFormParse() {
+    console.log(`Parsing form`);
+    addBook('another Book');
 }
+  function bindContainerEvents() {
+    let delBtns = document.querySelectorAll(".deleteBook");
+    delBtns.forEach((btn) => {
+      btn.addEventListener("click", deleteBook);
+    });
+  }
 
-function addBookToLibrary(name, pages) {
-  myLibrary.push(new Book(name, pages));
-}
+  function addBook(newBook) {
+      books.push({newBook});
+  }
 
-function printAllBooks() {
-  myLibrary.forEach((currentItem) => {
-    console.log(currentItem.name + " " + currentItem.pages);
-  });
-}
+  function showBooks() {
+      console.log(books);
+  }
 
-let newBookButton = document.getElementById("newBook");
-newBookButton.addEventListener("click", () => {
-  displayNewbookForm();
-});
+  function deleteBook(e) {
+    console.log(e.target.parentNode.attributes.key.value);
+  }
 
-function displayNewbookForm() {
-    let overlay = document.getElementById('form-overlay');
-    overlay.style.display = 'grid';
-}
+  init();
 
-function addBookButton() {
-  console.log("hits here");
-  let bookName = document.getElementById("bookname");
-  let pages = document.getElementById("pages");
-
-  addBookToLibrary(bookName.value, pages.value);
-
-  bookName.value = '';
-  pages.value = '';
-
-  // Hides the overlay/book add form
-  let overlay = document.getElementById('form-overlay');
-    overlay.style.display = 'none';
-}
+  return {
+      addBook,
+      showBooks,
+  }
+})();
