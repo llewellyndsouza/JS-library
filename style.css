@@ -33,7 +33,7 @@ body {
 .book {
   border: 2px solid lightcoral;
   box-shadow: #ca626298 2px 3px;
-  max-width: 500px;
+  max-width: 250px;
   min-width: 200px;
   height: auto;
   margin: 5px;
@@ -44,6 +44,7 @@ body {
 
 .book > * {
   text-align: center;
+  overflow-wrap: break-word;
 }
 
 .addBookForm {

@@ -1,5 +1,4 @@
 let Library = (function () {
-  //cacheDOM
   let books = [
     {
       name: "bookName1",
@@ -12,19 +11,21 @@ let Library = (function () {
       progress: "pageProgress2",
     },
   ];
+
+  //cacheDOM
   let addBookButton = document.querySelector(".addBookButton");
   let container = document.querySelector(".container");
-
-  function init() {
-    console.log(`Initializing`);
-    bindEvents();
-    render();
-  }
+  let addBookForm = document.querySelector(".addBookForm");
+  let submitButton = document.getElementById("submit");
+  let input_bookname = document.getElementById("bookname");
+  let input_authorname = document.getElementById("authorname");
+  let input_totalpages = document.getElementById("totalpages");
 
   //Bind Events
   function bindEvents() {
     console.log("Binding add book event");
-    addBookButton.addEventListener("click", addBookFormParse);
+    addBookButton.addEventListener("click", viewForm);
+    submitButton.addEventListener("click", addBookFormParse);
   }
 
   function bindContainerEvents() {
@@ -46,10 +47,10 @@ let Library = (function () {
     render();
   }
 
-  function renderBookContainer(book,i) {
+  function renderBookContainer(book, i) {
     let elemBook = document.createElement("div");
     elemBook.className = "book";
-    elemBook.setAttribute("key",`${i}`)
+    elemBook.setAttribute("key", `${i}`);
     let elem_BookName = document.createElement("p");
     elem_BookName.className = "bookName";
     elem_BookName.innerText = book.name;
@@ -73,15 +74,28 @@ let Library = (function () {
     container.appendChild(elemBook);
   }
 
+  function viewForm() {
+    //view the form
+    addBookForm.setAttribute("style", "display: grid");
+  }
+
   function addBookFormParse() {
+    //parse the data
+    const bookName = input_bookname.value;
+    const authorName = input_authorname.value;
+    const progress = input_totalpages.value;
     console.log(`Parsing form data`);
-    addBook("book Name 3", "author Name3", "56/154");
+    addBook(bookName, authorName, progress);
+
+    //clear and hide the form
+    input_bookname.value = input_authorname.value = input_totalpages.value = "";
+    addBookForm.setAttribute("style", "");
   }
 
   function deleteBook(e) {
     console.log("Deleting book");
     let delIndex = parseInt(e.target.parentElement.attributes.key.value);
-    books.splice(delIndex,1);
+    books.splice(delIndex, 1);
     render();
   }
 
@@ -89,9 +103,16 @@ let Library = (function () {
   function render() {
     console.log("Rendering books");
     container.innerText = "";
-    books.forEach((book,i) => renderBookContainer(book,i));
+    books.forEach((book, i) => renderBookContainer(book, i));
     console.log(books);
     bindContainerEvents();
+  }
+
+  //Initializing
+  function init() {
+    console.log(`Initializing`);
+    bindEvents();
+    render();
   }
 
   init();
